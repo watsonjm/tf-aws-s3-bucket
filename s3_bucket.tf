@@ -16,7 +16,7 @@ resource "aws_s3_bucket_versioning" "this" {
 }
 
 resource "aws_s3_bucket_logging" "this" {
-  count         = var.s3_logging_bucket == null ? 0 : 1
+  count         = var.enable_logging ? 1 : 0
   bucket        = aws_s3_bucket.this.id
   target_bucket = var.s3_logging_bucket
   target_prefix = var.s3_logging_prefix

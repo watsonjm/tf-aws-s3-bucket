@@ -81,3 +81,8 @@ variable "create_force_ssl_policy" {
   default     = false
   description = "This will create a bucket policy forcing SSL. Set to false if you need to use any other policy, including one that includes it's own SSL forcing."
 }
+variable "enable_logging" {
+  type        = bool
+  default     = true
+  description = "Determines if logging is enabled. Set to false for buckets that store logs, and thus should not be logging."
+}
