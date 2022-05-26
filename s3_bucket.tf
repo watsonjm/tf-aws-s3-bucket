@@ -4,8 +4,18 @@ resource "aws_s3_bucket" "this" {
 }
 
 resource "aws_s3_bucket_acl" "this" {
+  count  = var.use_bucket_acl ? 1 : 0
   bucket = aws_s3_bucket.this.id
   acl    = var.canned_acl
+}
+
+resource "aws_s3_bucket_ownership_controls" "this" {
+  count  = var.use_bucket_acl ? 0 : 1
+  bucket = aws_s3_bucket.this.id
+
+  rule {
+    object_ownership = "BucketOwnerEnforced"
+  }
 }
 
 resource "aws_s3_bucket_versioning" "this" {

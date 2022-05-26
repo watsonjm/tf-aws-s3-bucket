@@ -86,3 +86,8 @@ variable "enable_logging" {
   default     = true
   description = "Determines if logging is enabled. Set to false for buckets that store logs, and thus should not be logging."
 }
+variable "use_bucket_acl" {
+  type        = bool
+  default     = false
+  description = "AWS defaults to no ACL (recommended), which means other accounts cannot access objects. An ACL is only required if external entities need access"
+}
